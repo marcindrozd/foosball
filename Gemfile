@@ -10,6 +10,7 @@ gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'haml'
+gem 'devise'
 
 group :development, :test do
   gem 'byebug'
@@ -18,7 +19,13 @@ group :development, :test do
   gem 'pry'
   gem 'pry-nav'
   gem 'rspec-rails', '2.99'
-  gem 'spring'
+  gem 'faker'
+  gem 'better_errors'
+  gem 'factory_girl'
+end
+
+group :test do
+  gem 'shoulda-matchers', require: false
 end
 
 group :production do
