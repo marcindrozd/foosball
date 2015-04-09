@@ -1,4 +1,6 @@
 class MatchesController < ApplicationController
+  before_action :authenticate_player!
+
   def new
     @match = Match.new
   end
