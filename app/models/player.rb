@@ -1,3 +1,3 @@
 class Player < ActiveRecord::Base
-  validates_presence_of :first_name, :last_name, :avatar
+  validates_presence_of :first_name, :last_name
 end
