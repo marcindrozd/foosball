@@ -13,6 +13,9 @@ gem 'haml'
 gem 'devise'
 gem 'figaro'
 gem 'carrierwave'
+gem 'mini_magick'
+gem 'fog'
+gem 'fog-aws'
 
 group :development, :test do
   gem 'byebug'
