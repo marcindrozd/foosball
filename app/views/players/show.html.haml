@@ -1,0 +1,21 @@
+%h2
+  = @player.first_name
+  = @player.last_name
+
+%p
+  Matches played: #{@player.matches_played}
+  %br
+  Number of wins: #{@player.number_of_wins}
+  %br
+  Number of losses: #{@player.number_of_losses}
+  %br
+  Goals scored: #{@player.total_goals_scored}
+  %br
+  Goals lost: #{@player.total_goals_lost}
+  %br
+  Current winning streak: #{@player.current_streak}
+  %br
+  Longest winning streak: #{@player.longest_streak}
+  %br
+  Number of points: #{@player.points}
+  %br
