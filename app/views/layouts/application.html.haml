@@ -7,11 +7,18 @@
   = csrf_meta_tags
 
 %body
-  %header
-    = link_to "Add new match", new_match_path
-    = link_to "Sign Up", new_player_registration_path
-    = link_to "Sign In", new_player_session_path
-    = link_to "Sign Out", destroy_player_session_path, method: "delete"
+  %nav.navbar.navbar-inverse
+    .container-fluid
+      .navbar-header
+        = link_to "Foosball Tracker", root_path, class: "navbar-brand"
+      .collapse.navbar-collapse
+        %ul.nav.navbar-nav.navbar-right
+          - if player_signed_in?
+            %li= link_to "Add new match", new_match_path
+            %li= link_to "Sign Out", destroy_player_session_path, method: "delete"
+          - else
+            %li= link_to "Sign Up", new_player_registration_path
+            %li= link_to "Sign In", new_player_session_path
 
   %section
     = yield

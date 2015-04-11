@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  root to: 'users#index'
+  root to: 'players#index'
 
   devise_for :players
   resources :matches, only: [:new, :create, :show]
