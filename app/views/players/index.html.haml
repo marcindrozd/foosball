@@ -1,21 +1,23 @@
 <h2>Rankings</h2>
 
-%table
-  %tr
-    %th Full Name
-    %th Matches played
-    %th Number of wins
-    %th Number of losses
-    %th Total goals scored
-    %th Total goals lost
-    %th Points
+%table.table
+  %thead
+    %tr
+      %th Full Name
+      %th Matches played
+      %th Number of wins
+      %th Number of losses
+      %th Total goals scored
+      %th Total goals lost
+      %th Points
 
+  %tbody
   - @players.each do |player|
     %tr
-      %td= player.full_name
-      %td= player.matches_played
-      %td= player.number_of_wins
-      %td= player.number_of_losses
-      %td= player.total_goals_scored
-      %td= player.total_goals_lost
-      %td= player.points
+      %td= link_to player.full_name, player
+      %td.table-center= player.matches_played
+      %td.table-center= player.number_of_wins
+      %td.table-center= player.number_of_losses
+      %td.table-center= player.total_goals_scored
+      %td.table-center= player.total_goals_lost
+      %td.table-center= player.points
