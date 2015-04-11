@@ -1,0 +1,13 @@
+%h2 Matches played
+
+.col-sm-8.col-sm-offset-2
+  %table.table
+    %thead
+      %tr
+        %th Players
+        %th Score
+
+    - @matches.each do |match|
+      %tr
+        %td.table-center #{match.player1.full_name} vs. #{match.player2.full_name}
+        %td.table-center #{match.score_player1} : #{match.score_player2}

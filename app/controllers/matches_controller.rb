@@ -13,6 +13,10 @@ class MatchesController < ApplicationController
     @match = Match.find(params[:id])
   end
 
+  def index
+    @matches = Match.where('player1_id = ? OR player2_id = ?', params[:player_id], params[:player_id])
+  end
+
   private
 
   def match_params
