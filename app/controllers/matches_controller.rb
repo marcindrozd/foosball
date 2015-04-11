@@ -9,6 +9,10 @@ class MatchesController < ApplicationController
     @match = Match.new(match_params)
   end
 
+  def show
+    @match = Match.find(params[:id])
+  end
+
   private
 
   def match_params
