@@ -16,6 +16,7 @@ gem 'carrierwave'
 gem 'mini_magick'
 gem 'fog'
 gem 'fog-aws'
+gem 'bootstrap-sass', '~> 3.3.4'
 
 group :development, :test do
   gem 'byebug'
