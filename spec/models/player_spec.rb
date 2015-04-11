@@ -125,4 +125,11 @@ describe Player do
       expect(alice.reload.points).to eq(10)
     end
   end
+
+  describe "#win_percentage" do
+    it "returns the percentage of won games" do
+      alice = create(:player, matches_played: 10, number_of_wins: 5, number_of_losses: 5)
+      expect(alice.win_percentage).to eq(50.0)
+    end
+  end
 end

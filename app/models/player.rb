@@ -36,6 +36,10 @@ class Player < ActiveRecord::Base
     self.save
   end
 
+  def win_percentage
+    (self.number_of_wins.to_f / self.matches_played) * 100
+  end
+
   def add_match_played
     self.matches_played += 1
   end
