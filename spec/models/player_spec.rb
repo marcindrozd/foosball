@@ -131,5 +131,10 @@ describe Player do
       alice = create(:player, matches_played: 10, number_of_wins: 5, number_of_losses: 5)
       expect(alice.win_percentage).to eq(50.0)
     end
+
+    it "returns 0 if no matches played" do
+      alice = create(:player, matches_played: 0)
+      expect(alice.win_percentage).to eq(0)
+    end
   end
 end
