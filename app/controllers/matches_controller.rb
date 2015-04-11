@@ -7,6 +7,11 @@ class MatchesController < ApplicationController
 
   def create
     @match = Match.new(match_params)
+
+    if @match.save
+      flash[:notice] = "Match successfully added!"
+      redirect_to match_path(@match)
+    end
   end
 
   def show

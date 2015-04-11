@@ -22,13 +22,36 @@ describe MatchesController do
   describe "POST create" do
     context "with user not signed in" do
       it "redirects to sign in path" do
-        post :create, match: { player1: "player1", player2: "player2", score_player1: "10", score_player2: "5" }
+        post :create, match: { player1_id: "1", player2_id: "2", score_player1: "10", score_player2: "5" }
         expect(response).to redirect_to new_player_session_path
       end
 
       it "does not create a new match" do
-        post :create, match: { player1: "player1", player2: "player2", score_player1: "10", score_player2: "5" }
+        post :create, match: { player1_id: "1", player2_id: "2", score_player1: "10", score_player2: "5" }
         expect(Match.count).to eq(0)
+      end
+    end
+
+    context "with signed in user and valid data" do
+      it "redirects to show match page" do
+        alice = create(:player)
+        sign_in alice
+        post :create, match: { player1_id: alice.id, player2_id: "2", score_player1: "10", score_player2: "5" }
+        expect(response).to redirect_to match_path(Match.first)
+      end
+
+      it "creates a new match" do
+        alice = create(:player)
+        sign_in alice
+        post :create, match: { player1_id: alice.id, player2_id: "2", score_player1: "10", score_player2: "5" }
+        expect(Match.count).to eq(1)
+      end
+
+      it "displays success message" do
+        alice = create(:player)
+        sign_in alice
+        post :create, match: { player1_id: alice.id, player2_id: "2", score_player1: "10", score_player2: "5" }
+        expect(flash[:notice]).to be_present
       end
     end
   end
