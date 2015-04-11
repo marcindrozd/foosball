@@ -9,5 +9,5 @@
 
     - @matches.each do |match|
       %tr
-        %td.table-center #{match.player1.full_name} vs. #{match.player2.full_name}
+        %td.table-center= link_to "#{match.player1.full_name} vs. #{match.player2.full_name}", match
         %td.table-center #{match.score_player1} : #{match.score_player2}
