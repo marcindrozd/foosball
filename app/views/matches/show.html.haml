@@ -1,8 +1,10 @@
-%h2 Match
+.well
+  %h2 Match - #{@match.player1.full_name} vs. #{@match.player2.full_name}
 
-%p
-  = @match.player1.full_name
-  = @match.score_player1
-  %br
-  = @match.player2.full_name
-  = @match.score_player2
+  %h3 score: #{@match.score_player1} : #{@match.score_player2}
+
+.panel.panel-success
+  .panel-heading
+    %h3.panel-title Previous matches between these players
+  .panel-body
+    Here be previous matches between these two players
