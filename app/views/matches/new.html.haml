@@ -1,24 +1,27 @@
 .well.col-sm-8.col-sm-offset-2
   %h2 Add a match
 
-  %table.table
-    %thead
-      %tr
-        %th
-        %th Host
-        %th Guest
+  %p
+    %table.table
+      %thead
+        %tr
+          %th
+          %th Host
+          %th Guest
 
-    %tbody
-      = bootstrap_form_for @match do |f|
-        %tr
-          %td Players
-          %td= current_player.full_name
-          %td= f.select :player2_id, Player.where('id != ?', current_player.id).map { |p| [p.email, p.id] }, hide_label: true
-        %tr
-          %td Score
-          %td= f.text_field :score_player1, hide_label: true
-          %td= f.text_field :score_player2, hide_label: true
+      %tbody
+        = bootstrap_form_for @match do |f|
+          %tr
+            %td.vert-align
+              %strong Players
+            %td.vert-align.table-center= current_player.full_name
+            %td.vert-align= f.select :player2_id, Player.where('id != ?', current_player.id).map { |p| [p.email, p.id] }, hide_label: true
+          %tr
+            %td.vert-align
+              %strong Score
+            %td.vert-align= f.text_field :score_player1, hide_label: true
+            %td.vert-align= f.text_field :score_player2, hide_label: true
 
-        = f.hidden_field(:player1_id, value: current_player.id)
-        %tr
-          %td{colspan: 3}= f.submit
+          = f.hidden_field(:player1_id, value: current_player.id)
+          %tr
+            %td{colspan: 3}= f.submit

@@ -14,3 +14,19 @@
 @import "bootstrap-sprockets";
 @import "bootstrap.min";
 @import "rails_bootstrap_forms";
+
+table th {
+  text-align: center;
+}
+
+.table th, .table td {
+  border-top: none !important;
+ }
+
+.table tbody > tr > td.vert-align {
+  vertical-align: middle;
+}
+
+.table tbody > tr > td.table-center {
+  text-align: center;
+}
