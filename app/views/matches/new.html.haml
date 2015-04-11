@@ -13,12 +13,12 @@
         %tr
           %td Players
           %td= current_player.full_name
-          %td= f.select :player2, Player.all.map(&:email), hide_label: true
+          %td= f.select :player2_id, Player.where('id != ?', current_player.id).map { |p| [p.email, p.id] }, hide_label: true
         %tr
           %td Score
           %td= f.text_field :score_player1, hide_label: true
           %td= f.text_field :score_player2, hide_label: true
 
-        = f.hidden_field(:player1, value: current_player.id)
+        = f.hidden_field(:player1_id, value: current_player.id)
         %tr
           %td{colspan: 3}= f.submit
