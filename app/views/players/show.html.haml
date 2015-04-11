@@ -1,22 +1,33 @@
-%h2
+.col-sm-2.col-sm-offset-4
   = show_avatar(@player)
-  = @player.first_name
-  = @player.last_name
 
-%p
-  Matches played: #{@player.matches_played}
-  %br
-  Number of wins: #{@player.number_of_wins}
-  %br
-  Number of losses: #{@player.number_of_losses}
-  %br
-  Goals scored: #{@player.total_goals_scored}
-  %br
-  Goals lost: #{@player.total_goals_lost}
-  %br
-  Current winning streak: #{@player.current_streak}
-  %br
-  Longest winning streak: #{@player.longest_streak}
-  %br
-  Number of points: #{@player.points}
-  %br
+%table.table
+  %thead
+    %tr
+      %th{colspan: 2}= @player.full_name
+
+  %tbody
+    %tr
+      %td Matches played
+      %td= @player.matches_played
+    %tr
+      %td Number of wins
+      %td= @player.number_of_wins
+    %tr
+      %td Number of losses
+      %td= @player.number_of_losses
+    %tr
+      %td Goals scored
+      %td= @player.total_goals_scored
+    %tr
+      %td Goals lost
+      %td= @player.total_goals_lost
+    %tr
+      %td Current winning streak
+      %td= @player.current_streak
+    %tr
+      %td Longest winning streak
+      %td= @player.longest_streak
+    %tr
+      %td Number of points
+      %td= @player.points
