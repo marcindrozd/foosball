@@ -1,0 +1,4 @@
+- flash.each do |key, msg|
+  %div{class: "alert alert-dismissable alert-#{key.to_s == "notice" ? "success" : "danger"}"}
+    %button{class: "close", type: "button", data: { dismiss: "alert" }} x
+    = msg

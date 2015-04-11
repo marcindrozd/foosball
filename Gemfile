@@ -17,6 +17,7 @@ gem 'mini_magick'
 gem 'fog'
 gem 'fog-aws'
 gem 'bootstrap-sass', '~> 3.3.4'
+gem 'bootstrap_form'
 
 group :development, :test do
   gem 'byebug'
