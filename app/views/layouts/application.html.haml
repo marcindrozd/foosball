@@ -3,6 +3,7 @@
 %head
   %title Foosball Tracker
   = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true
+  = stylesheet_link_tag 'http://fonts.googleapis.com/css?family=Pacifico'
   = javascript_include_tag 'application', 'data-turbolinks-track' => true
   = csrf_meta_tags
 
@@ -10,7 +11,7 @@
   %nav.navbar.navbar-inverse
     .container-fluid
       .navbar-header
-        = link_to "Foosball Tracker", root_path, class: "navbar-brand"
+        = link_to "Foosball Mania!", root_path, class: "navbar-brand"
 
       %ul.nav.navbar-nav.navbar-right
         - if player_signed_in?
