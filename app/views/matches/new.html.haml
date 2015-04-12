@@ -2,15 +2,15 @@
   %h2 Add a match
 
   %p
-    %table.table
-      %thead
-        %tr
-          %th
-          %th Host
-          %th Guest
+    = bootstrap_form_for @match do |f|
+      %table.table
+        %thead
+          %tr
+            %th
+            %th Host
+            %th Guest
 
-      %tbody
-        = bootstrap_form_for @match do |f|
+        %tbody
           %tr
             %td.vert-align
               %strong Players
@@ -22,6 +22,8 @@
             %td.vert-align= f.text_field :score_player1, hide_label: true
             %td.vert-align= f.text_field :score_player2, hide_label: true
 
-          = f.hidden_field(:player1_id, value: current_player.id)
-          %tr
-            %td{colspan: 3}= f.submit
+      .text-center
+        = f.date_select :match_date
+
+        = f.hidden_field(:player1_id, value: current_player.id)
+        = f.submit
