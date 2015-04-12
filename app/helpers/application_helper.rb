@@ -6,4 +6,8 @@ module ApplicationHelper
       image_tag "default.gif"
     end
   end
+
+  def pretty_date(date)
+    date.strftime("%d %b %Y")
+  end
 end

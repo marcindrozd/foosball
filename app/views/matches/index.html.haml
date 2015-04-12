@@ -1,13 +1,12 @@
-%h2 Matches played
-
 .col-sm-8.col-sm-offset-2
-  %table.table
-    %thead
-      %tr
-        %th Players
-        %th Score
+  %h2.text-center Matches played
 
+  %table.table
     - @matches.each do |match|
       %tr
-        %td.table-center= link_to "#{match.player1.full_name} vs. #{match.player2.full_name}", match
-        %td.table-center #{match.score_player1} : #{match.score_player2}
+        %td.table-center
+          = match.player1.full_name
+        %td.table-center
+          = link_to "#{match.score_player1} : #{match.score_player2}", match
+        %td.table-center
+          = match.player2.full_name

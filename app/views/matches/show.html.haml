@@ -1,10 +1,19 @@
-.well
-  %h2 Match - #{@match.player1.full_name} vs. #{@match.player2.full_name}
+.col-sm-6.col-sm-offset-3
+  .panel.panel-success
+    .panel-heading
+      %h3.panel-title Match: #{pretty_date(@match.match_date)}
 
-  %h3 score: #{@match.score_player1} : #{@match.score_player2}
+    .panel-body.text-center
+      %tr
+        %td.table-center
+          = @match.player1.full_name
+        %td.table-center
+          %strong= "#{@match.score_player1} : #{@match.score_player2}"
+        %td.table-center
+          = @match.player2.full_name
 
-.panel.panel-success
-  .panel-heading
-    %h3.panel-title Previous matches between these players
-  .panel-body
-    Here be previous matches between these two players
+  .panel.panel-success
+    .panel-heading
+      %h3.panel-title Previous matches between these players
+    .panel-body
+      Here be previous matches between these two players
