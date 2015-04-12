@@ -3,6 +3,7 @@ class PlayersController < ApplicationController
 
   def show
     @player = Player.find(params[:id])
+    @recent_matches = Match.recent_matches(@player)
   end
 
   def index

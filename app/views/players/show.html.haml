@@ -37,3 +37,22 @@
     %tr
       %td Number of points
       %td= @player.points
+
+.col-sm-5.col-sm-offset-1
+  .panel.panel-success
+    .panel-heading
+      %h3.panel-title Recent matches
+    .panel-body
+      %table.table
+        - @recent_matches.each do |match|
+          %tr
+            %td.table-center
+              = match.player1.full_name
+            %td.table-center
+              = link_to "#{match.score_player1} : #{match.score_player2}", match
+            %td.table-center
+              = match.player2.full_name
+
+.col-sm-5
+  .well
+    This will be a contact form

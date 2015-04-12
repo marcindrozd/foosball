@@ -50,4 +50,36 @@ describe Match do
       expect(Match.matches_between_players(alice, bob)).to match_array([match1, match2])
     end
   end
+
+  describe ".recent_matches" do
+    it "returns empty array if there are no matches" do
+      alice = create(:player)
+      expect(Match.recent_matches(alice)).to eq([])
+    end
+
+    it "returns a match for associated player" do
+      alice = create(:player)
+      match = create(:match, player1_id: alice.id)
+      expect(Match.recent_matches(alice)).to match_array([match])
+    end
+
+    it "returns all matches for associated player" do
+      alice = create(:player)
+      match1 = create(:match, player1_id: alice.id)
+      match2 = create(:match, player1_id: alice.id)
+      match3 = create(:match, player2_id: alice.id)
+      expect(Match.recent_matches(alice)).to match_array([match1, match2, match3])
+    end
+
+    it "returns max 5 matches for associated player ordered by date descending" do
+      alice = create(:player)
+      match1 = create(:match, player1_id: alice.id, match_date: 6.days.ago)
+      match2 = create(:match, player1_id: alice.id, match_date: 5.days.ago)
+      match3 = create(:match, player2_id: alice.id, match_date: 4.days.ago)
+      match4 = create(:match, player2_id: alice.id, match_date: 3.days.ago)
+      match5 = create(:match, player2_id: alice.id, match_date: 2.days.ago)
+      match6 = create(:match, player2_id: alice.id, match_date: 1.day.ago)
+      expect(Match.recent_matches(alice)).to eq([match6, match5, match4, match3, match2])
+    end
+  end
 end

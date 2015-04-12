@@ -19,4 +19,12 @@ class Match < ActiveRecord::Base
       []
     end
   end
+
+  def self.recent_matches(player)
+    if self.where("player1_id = ? OR player2_id = ?", player, player).count > 0
+      self.where("player1_id = ? OR player2_id = ?", player, player).order(match_date: :desc).limit(5)
+    else
+      []
+    end
+  end
 end
