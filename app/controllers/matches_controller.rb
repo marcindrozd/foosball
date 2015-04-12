@@ -11,6 +11,9 @@ class MatchesController < ApplicationController
     if @match.save
       flash[:notice] = "Match successfully added!"
       redirect_to match_path(@match)
+    else
+      flash[:danger] = "Please check below error messages"
+      render :new
     end
   end
 
