@@ -4,4 +4,11 @@ class Match < ActiveRecord::Base
 
   validates_presence_of :player1_id, :player2_id, :score_player1, :score_player2, :match_date
   validates_numericality_of :score_player1, :score_player2, { only_integer: true, greater_than_or_equal_to: 0, less_than_or_equal_to: 10 }
+  validate :scores_cannot_be_the_same
+
+  def scores_cannot_be_the_same
+    if score_player1 == score_player2
+      errors.add(:score_player1, "can't be the same as score for player 2")
+    end
+  end
 end
