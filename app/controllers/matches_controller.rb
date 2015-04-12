@@ -9,6 +9,11 @@ class MatchesController < ApplicationController
     @match = Match.new(match_params)
 
     if @match.save
+      player1 = Player.find(params[:match][:player1_id])
+      player2 = Player.find(params[:match][:player2_id])
+      score_player1 = params[:match][:score_player1].to_i
+      score_player2 = params[:match][:score_player2].to_i
+      handle_winner_and_loser(player1, player2, score_player1, score_player2)
       flash[:notice] = "Match successfully added!"
       redirect_to match_path(@match)
     else
@@ -29,5 +34,15 @@ class MatchesController < ApplicationController
 
   def match_params
     params.require(:match).permit(:player1_id, :player2_id, :score_player1, :score_player2, :match_date)
+  end
+
+  def handle_winner_and_loser(player1, player2, score_player1, score_player2)
+    if score_player1 > score_player2
+      player1.update_winning_player_stats(score_player1, score_player2)
+      player2.update_losing_player_stats(score_player2, score_player1)
+    else
+      player1.update_losing_player_stats(score_player1, score_player2)
+      player2.update_winning_player_stats(score_player2, score_player1)
+    end
   end
 end
