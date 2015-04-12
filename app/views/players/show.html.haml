@@ -18,7 +18,7 @@
       %td= @player.number_of_losses
     %tr
       %td Win %
-      %td= number_to_percentage(@player.win_percentage, precision: 1)
+      %td= number_to_percentage(@player.win_ratio, precision: 1)
     %tr
       %td Goals scored
       %td= @player.total_goals_scored

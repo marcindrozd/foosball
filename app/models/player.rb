@@ -36,7 +36,7 @@ class Player < ActiveRecord::Base
     self.save
   end
 
-  def win_percentage
+  def win_ratio
     if self.matches_played == 0
       0
     else

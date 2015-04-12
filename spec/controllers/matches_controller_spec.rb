@@ -34,10 +34,11 @@ describe MatchesController do
 
     context "with signed in user and valid data" do
       let(:alice) { create(:player) }
+      let(:bob) { create(:player) }
 
       before do
         sign_in alice
-        post :create, match: { player1_id: alice.id, player2_id: "2", score_player1: "10", score_player2: "5", match_date: Date.new() }
+        post :create, match: { player1_id: alice.id, player2_id: bob.id, score_player1: "10", score_player2: "5", match_date: Date.new() }
       end
 
       it "redirects to show match page" do

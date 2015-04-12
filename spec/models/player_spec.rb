@@ -126,15 +126,15 @@ describe Player do
     end
   end
 
-  describe "#win_percentage" do
+  describe "#win_ratio" do
     it "returns the percentage of won games" do
       alice = create(:player, matches_played: 10, number_of_wins: 5, number_of_losses: 5)
-      expect(alice.win_percentage).to eq(50.0)
+      expect(alice.win_ratio).to eq(50.0)
     end
 
     it "returns 0 if no matches played" do
       alice = create(:player, matches_played: 0)
-      expect(alice.win_percentage).to eq(0)
+      expect(alice.win_ratio).to eq(0)
     end
   end
 end
