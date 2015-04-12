@@ -1,7 +1,7 @@
 module ApplicationHelper
   def show_avatar(player)
     if player.avatar?
-      player.avatar
+      image_tag player.avatar.url
     else
       image_tag "default.gif"
     end
