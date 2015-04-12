@@ -11,4 +11,12 @@ class Match < ActiveRecord::Base
       errors.add(:score_player1, "can't be the same as score for player 2")
     end
   end
+
+  def self.matches_between_players(player1, player2)
+    if self.where("player1_id IN (?) AND player2_id IN (?)", [player1, player2], [player1, player2]).count > 0
+      self.where("player1_id IN (?) AND player2_id IN (?)", [player1, player2], [player1, player2])
+    else
+      []
+    end
+  end
 end

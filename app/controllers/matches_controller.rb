@@ -24,6 +24,7 @@ class MatchesController < ApplicationController
 
   def show
     @match = Match.find(params[:id])
+    @previous_matches = Match.matches_between_players(@match.player1, @match.player2)
   end
 
   def index
