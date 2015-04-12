@@ -6,4 +6,6 @@ Rails.application.routes.draw do
   resources :players, only: [:show, :index] do
     resources :matches, only: [:index]
   end
+
+  resources :challenges, only: [:create]
 end

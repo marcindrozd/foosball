@@ -55,4 +55,10 @@
 
 .col-sm-5
   .well
-    This will be a contact form
+    %h3 Challenge this player for a match!
+    = form_tag('/challenges') do
+      = hidden_field_tag :player_id, @player.id
+      .form-group
+        = text_area_tag :message, nil, rows: 8, class: "form-control", placeholder: "Enter a personalized message with details, such as suggested date, etc."
+      %br
+      = submit_tag "Send challenge", class: "btn btn-default"
