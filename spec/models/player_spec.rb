@@ -144,4 +144,15 @@ describe Player do
       expect(alice.average_goals).to eq(5.6)
     end
   end
+
+  describe "#find_player_position" do
+    it "returns a position of the player based on point" do
+      alice = create(:player, points: 10)
+      bob = create(:player, points: 30)
+      charlie = create(:player, points: 20)
+      expect(alice.find_player_position).to eq(3)
+      expect(bob.find_player_position).to eq(1)
+      expect(charlie.find_player_position).to eq(2)
+    end
+  end
 end

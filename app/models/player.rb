@@ -79,4 +79,8 @@ class Player < ActiveRecord::Base
   def average_goals
     (self.total_goals_scored.to_f / self.matches_played).round(1)
   end
+
+  def find_player_position
+    Player.order(points: :desc).index(self) + 1
+  end
 end

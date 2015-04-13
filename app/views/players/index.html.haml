@@ -14,7 +14,9 @@
   %tbody
   - @players.each do |player|
     %tr
-      %td= link_to player.full_name, player
+      %td
+        = link_to player.full_name, player
+        = display_trophy(player)
       %td.table-center= link_to player.matches_played, player_matches_path(player)
       %td.table-center= player.number_of_wins
       %td.table-center= player.number_of_losses

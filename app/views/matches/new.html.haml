@@ -15,7 +15,7 @@
             %td.vert-align
               %strong Players
             %td.vert-align.table-center= current_player.full_name
-            %td.vert-align= f.select :player2_id, Player.where('id != ?', current_player.id).map { |p| [p.full_name, p.id] }, hide_label: true
+            %td.vert-align= f.select :player2_id, options_for_players, hide_label: true
           %tr
             %td.vert-align
               %strong Score
