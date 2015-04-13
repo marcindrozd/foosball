@@ -6,11 +6,11 @@
     .panel-body.text-center
       %tr
         %td.table-center
-          = @match.player1.full_name
+          = link_to @match.player1.full_name, @match.player1
         %td.table-center
           %strong= "#{@match.score_player1} : #{@match.score_player2}"
         %td.table-center
-          = @match.player2.full_name
+          = link_to @match.player2.full_name, @match.player2
 
   .panel.panel-success
     .panel-heading
@@ -18,10 +18,4 @@
     .panel-body
       %table.table
         - @previous_matches.each do |match|
-          %tr
-            %td.table-center
-              = match.player1.full_name
-            %td.table-center
-              = link_to "#{match.score_player1} : #{match.score_player2}", match
-            %td.table-center
-              = match.player2.full_name
+          = render match

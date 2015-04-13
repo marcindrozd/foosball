@@ -54,12 +54,13 @@
             %td.table-center
               = match.player2.full_name
 
-.col-sm-5
-  .well
-    %h4 Challenge this player for a match!
-    = form_tag('/challenges') do
-      = hidden_field_tag :player_id, @player.id
-      .form-group
-        = text_area_tag :message, nil, rows: 8, class: "form-control", placeholder: "Enter a personalized message with details, such as suggested date, etc."
-      %br
-      .text-center= submit_tag "Send challenge", class: "btn btn-default"
+- if current_player && current_player != @player
+  .col-sm-5
+    .well
+      %h4 Challenge this player for a match!
+      = form_tag('/challenges') do
+        = hidden_field_tag :player_id, @player.id
+        .form-group
+          = text_area_tag :message, nil, rows: 8, class: "form-control", placeholder: "Enter a personalized message with details, such as suggested date, etc."
+        %br
+        .text-center= submit_tag "Send challenge", class: "btn btn-default"

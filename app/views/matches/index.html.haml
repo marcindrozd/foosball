@@ -3,10 +3,4 @@
 
   %table.table
     - @matches.each do |match|
-      %tr
-        %td.table-center
-          = match.player1.full_name
-        %td.table-center
-          = link_to "#{match.score_player1} : #{match.score_player2}", match
-        %td.table-center
-          = match.player2.full_name
+      = render match
