@@ -4,7 +4,8 @@
 %table.table
   %thead
     %tr
-      %th{colspan: 2}= @player.full_name
+      %th{colspan: 2}
+        .player-name= @player.full_name
     - if current_player && current_player == @player
       %tr
         %th{colspan: 2}= link_to "Edit player profile", edit_player_registration_path
@@ -55,10 +56,10 @@
 
 .col-sm-5
   .well
-    %h3 Challenge this player for a match!
+    %h4 Challenge this player for a match!
     = form_tag('/challenges') do
       = hidden_field_tag :player_id, @player.id
       .form-group
         = text_area_tag :message, nil, rows: 8, class: "form-control", placeholder: "Enter a personalized message with details, such as suggested date, etc."
       %br
-      = submit_tag "Send challenge", class: "btn btn-default"
+      .text-center= submit_tag "Send challenge", class: "btn btn-default"
