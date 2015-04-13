@@ -7,13 +7,13 @@ describe PlayerMailer do
     let(:mail) { PlayerMailer.send_challenge(bob, alice, "Let's play!") }
 
     it "renders the headers" do
-      mail.subject.should eq("You have been challenged!")
-      mail.to.should eq(["alice@example.com"])
-      mail.from.should eq(["bob@example.com"])
+      expect(mail.subject).to eq("You have been challenged!")
+      expect(mail.to).to eq(["alice@example.com"])
+      expect(mail.from).to eq(["bob@example.com"])
     end
 
     it "renders the body" do
-      mail.body.encoded.should match("Let's play!")
+      expect(mail.body.encoded).to match("Let's play!")
     end
   end
 

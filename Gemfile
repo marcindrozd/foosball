@@ -25,7 +25,7 @@ group :development, :test do
   gem 'spring'
   gem 'pry'
   gem 'pry-nav'
-  gem 'rspec-rails', '2.99'
+  gem 'rspec-rails', '~> 3.0'
   gem 'faker'
   gem 'better_errors'
   gem 'factory_girl_rails'
