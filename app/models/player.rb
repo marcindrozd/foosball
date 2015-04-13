@@ -75,4 +75,8 @@ class Player < ActiveRecord::Base
   def update_points
     self.points += 10
   end
+
+  def average_goals
+    (self.total_goals_scored.to_f / self.matches_played).round(1)
+  end
 end

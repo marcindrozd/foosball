@@ -137,4 +137,11 @@ describe Player do
       expect(alice.win_ratio).to eq(0)
     end
   end
+
+  describe "#average_goals" do
+    it "returns average goals scored per game" do
+      alice = create(:player, matches_played: 10, total_goals_scored: 56)
+      expect(alice.average_goals).to eq(5.6)
+    end
+  end
 end
