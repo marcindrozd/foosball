@@ -18,22 +18,20 @@ describe Match do
   it { should_not allow_value(11).for(:score_player1) }
 
   describe ".matches_between_players" do
+    let(:alice) { create(:player) }
+    let(:bob) { create(:player) }
+    let(:charlie) { create(:player) }
+
     it "returns empty array if there are no matches between the two players" do
-      alice = create(:player)
-      bob = create(:player)
       expect(Match.matches_between_players(alice, bob)).to eq([])
     end
 
     it "returns a match between the players if there is a match" do
-      alice = create(:player)
-      bob = create(:player)
       match = create(:match, player1_id: alice.id, player2_id: bob.id)
       expect(Match.matches_between_players(alice, bob)).to eq([match])
     end
 
     it "returns all matches between two players" do
-      alice = create(:player)
-      bob = create(:player)
       match1 = create(:match, player1_id: alice.id, player2_id: bob.id)
       match2 = create(:match, player1_id: bob.id, player2_id: alice.id)
       match3 = create(:match, player1_id: alice.id, player2_id: bob.id)
@@ -41,9 +39,6 @@ describe Match do
     end
 
     it "returns only matches between the two players" do
-      alice = create(:player)
-      bob = create(:player)
-      charlie = create(:player)
       match1 = create(:match, player1_id: alice.id, player2_id: bob.id)
       match2 = create(:match, player1_id: bob.id, player2_id: alice.id)
       match3 = create(:match, player1_id: alice.id, player2_id: charlie.id)
@@ -52,19 +47,18 @@ describe Match do
   end
 
   describe ".recent_matches" do
+    let(:alice) { create(:player) }
+
     it "returns empty array if there are no matches" do
-      alice = create(:player)
       expect(Match.recent_matches(alice)).to eq([])
     end
 
     it "returns a match for associated player" do
-      alice = create(:player)
       match = create(:match, player1_id: alice.id)
       expect(Match.recent_matches(alice)).to match_array([match])
     end
 
     it "returns all matches for associated player" do
-      alice = create(:player)
       match1 = create(:match, player1_id: alice.id)
       match2 = create(:match, player1_id: alice.id)
       match3 = create(:match, player2_id: alice.id)
@@ -72,7 +66,6 @@ describe Match do
     end
 
     it "returns max 5 matches for associated player ordered by date descending" do
-      alice = create(:player)
       match1 = create(:match, player1_id: alice.id, match_date: 6.days.ago)
       match2 = create(:match, player1_id: alice.id, match_date: 5.days.ago)
       match3 = create(:match, player2_id: alice.id, match_date: 4.days.ago)

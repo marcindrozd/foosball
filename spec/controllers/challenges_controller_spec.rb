@@ -3,48 +3,50 @@ require 'spec_helper'
 describe ChallengesController do
   describe "POST create" do
     context "signed in user" do
-      it "sets sender to currently logged user" do
-        alice = create(:player)
-        bob = create(:player)
+      let(:alice) { create(:player) }
+      let(:bob) { create(:player) }
+
+      before do
+        PlayerMailer.deliveries.clear
         sign_in alice
-        post :create, player_id: bob.id
+        post :create, player_id: bob.id, message: "I am challenging you!"
+      end
+
+      it "sets sender to currently logged user" do
         expect(assigns(:sender)).to eq(alice)
       end
 
       it "sets recipient to currently visited profile" do
-        alice = create(:player)
-        bob = create(:player)
-        sign_in alice
-        post :create, player_id: bob.id
         expect(assigns(:recipient)).to eq(bob)
       end
 
       it "sets the message to information entered by the sender" do
-        alice = create(:player)
-        bob = create(:player)
-        sign_in alice
-        post :create, player_id: bob.id, message: "I am challenging you!"
         expect(assigns(:message)).to eq("I am challenging you!")
       end
 
-      it "send email to recipient"
+      it "sends email to recipient" do
+        expect(PlayerMailer.deliveries.count).to eq(1)
+      end
+
       it "displays success message" do
-        alice = create(:player)
-        bob = create(:player)
-        sign_in alice
-        post :create, player_id: bob.id
         expect(flash[:notice]).to be_present
       end
     end
 
     context "with not signed in user" do
-      it "redirects to user sign in page" do
+      before do
+        PlayerMailer.deliveries.clear
         alice = create(:player)
         post :create, player_id: alice.id
+      end
+
+      it "redirects to user sign in page" do
         expect(response).to redirect_to new_player_session_path
       end
 
-      it "does not send an email"
+      it "does not send an email" do
+        expect(PlayerMailer.deliveries.count).to eq(0)
+      end
     end
   end
 end

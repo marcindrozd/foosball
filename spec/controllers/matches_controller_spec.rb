@@ -32,7 +32,7 @@ describe MatchesController do
       end
     end
 
-    context "with signed in user and valid data" do
+    context "with user signed in and valid data" do
       let(:alice) { create(:player) }
       let(:bob) { create(:player) }
 
@@ -54,27 +54,61 @@ describe MatchesController do
       end
     end
 
-    context "with signed in user and invalid data" do
-      it "renders new template" do
-        alice = create(:player)
+    context "with user signed in and invalid data" do
+      let(:alice) { create(:player) }
+
+      before do
         sign_in alice
-        post :create, match: { player1_id: alice.id, player2_id: "2", score_player1: "abc", score_player2: "5" }
+        post :create, match: { player1_id: alice.id, player2_id: "2",
+                              score_player1: "abc", score_player2: "5" }
+      end
+
+      it "renders new template" do
         expect(response).to render_template :new
       end
 
       it "displays error message" do
-        alice = create(:player)
-        sign_in alice
-        post :create, match: { player1_id: alice.id, player2_id: "2", score_player1: "abc", score_player2: "5" }
         expect(flash[:danger]).to be_present
       end
 
       it "does not create a new match" do
-        alice = create(:player)
-        sign_in alice
-        post :create, match: { player1_id: alice.id, player2_id: "2", score_player1: "abc", score_player2: "5" }
         expect(Match.count).to eq(0)
       end
+    end
+  end
+
+  describe "GET show" do
+    it "sets the match variable" do
+      alice = create(:player)
+      match = create(:match)
+      sign_in alice
+      get :show, id: match.id
+      expect(assigns(:match)).to eq(match)
+    end
+
+    it "sets the match variable even if player is not signed in" do
+      match = create(:match)
+      get :show, id: match.id
+      expect(assigns(:match)).to eq(match)
+    end
+  end
+
+  describe "GET index" do
+    it "sets matches variable" do
+      alice = create(:player)
+      match1 = create(:match, player1_id: alice.id)
+      match2 = create(:match, player2_id: alice.id)
+      sign_in alice
+      get :index, player_id: alice.id
+      expect(assigns(:matches)).to match_array([match1, match2])
+    end
+
+    it "sets matches variable even if player is not signed in" do
+      alice = create(:player)
+      match1 = create(:match, player1_id: alice.id)
+      match2 = create(:match, player2_id: alice.id)
+      get :index, player_id: alice.id
+      expect(assigns(:matches)).to match_array([match1, match2])
     end
   end
 end
