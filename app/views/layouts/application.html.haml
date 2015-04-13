@@ -1,29 +1,29 @@
 !!! 5
 %html
-%head
-  %title Foosball Tracker
-  = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true
-  = stylesheet_link_tag 'http://fonts.googleapis.com/css?family=Pacifico'
-  = javascript_include_tag 'application', 'data-turbolinks-track' => true
-  = csrf_meta_tags
+  %head
+    %title Foosball Tracker
+    = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true
+    = stylesheet_link_tag 'http://fonts.googleapis.com/css?family=Pacifico'
+    = javascript_include_tag 'application', 'data-turbolinks-track' => true
+    = csrf_meta_tags
 
-%body
-  %nav.navbar.navbar-inverse
+  %body
+    %nav.navbar.navbar-inverse
+      .container-fluid
+        .navbar-header
+          = link_to "Foosball Mania!", root_path, class: "navbar-brand"
+
+        %ul.nav.navbar-nav.navbar-right
+          - if player_signed_in?
+            %li= link_to "Add new match", new_match_path
+            %li= link_to "Sign Out", destroy_player_session_path, method: "delete"
+          - else
+            %li= link_to "Sign Up", new_player_registration_path
+            %li= link_to "Sign In", new_player_session_path
+
     .container-fluid
-      .navbar-header
-        = link_to "Foosball Mania!", root_path, class: "navbar-brand"
+      .row
+        .col-sm-12
+          = render 'shared/messages'
 
-      %ul.nav.navbar-nav.navbar-right
-        - if player_signed_in?
-          %li= link_to "Add new match", new_match_path
-          %li= link_to "Sign Out", destroy_player_session_path, method: "delete"
-        - else
-          %li= link_to "Sign Up", new_player_registration_path
-          %li= link_to "Sign In", new_player_session_path
-
-  .container-fluid
-    .row
-      .col-sm-12
-        = render 'shared/messages'
-
-        = yield
+          = yield
