@@ -44,10 +44,6 @@ class Player < ActiveRecord::Base
     end
   end
 
-  def update_player(player_stat)
-    player_stat += 1
-  end
-
   def add_match_played
     self.matches_played += 1
   end
